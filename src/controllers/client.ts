@@ -69,8 +69,11 @@ export const signin = async (req: Request, res: Response) => {
 // Define the getAllMenus controller
 export const getAllMenus = async (req: Request, res: Response) => {
 
+  
   // get all menu
-  const menu = await Menu.find()
+  const menu = await MenuOwner.find()
+  .populate('restaurantID') // Remplit les informations sur le restaurant
+  .populate('menuID'); // Remplit les informations sur le menu
 
   // Send the menus back to the client
   return res.status(StatusCodes.OK).json({
