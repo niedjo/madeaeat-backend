@@ -69,7 +69,6 @@ export const signin = async (req: Request, res: Response) => {
 // Define the getAllMenus controller
 export const getAllMenus = async (req: Request, res: Response) => {
 
-  
   // get all menu
   const menu = await MenuOwner.find()
   .populate('restaurantID') // Remplit les informations sur le restaurant
@@ -155,14 +154,29 @@ export const getSingleRestaurantMenu = async (req: Request, res: Response) => {
 // Define the getAllAnnouncements controller
 export const getAllAnnouncements = async (req: Request, res: Response) => {
   // Find all announcements and populate the createdBy field with only the necessary information
-  const announcements = await Annonce.find()
-    .select("-createdAt -updatedAt")
-    .populate("createdBy", "name profile");
+  const fiveDaysAgo = new Date();
+  fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5); // Calcule la date il y a 5 jours
+
+  const announcements = await Annonce.find({
+    updatedAt: { $gte: fiveDaysAgo } // Filtre les annonces mises à jour il y a au plus 5 jours
+  }).populate("createdBy", "name profile");
 
   // Send the announcements back to the client
   return res.status(StatusCodes.OK).json({
     announcements,
   });
+};
+
+export const markAnnouncementAsRead = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const userId = (req as any).user.userId;
+  const notification = await Annonce.findById(id);
+  if (!notification) return res.status(404).send("Notification not found");
+  if (!notification.readBy.includes(userId)) {
+    notification.readBy.push(userId);
+    await notification.save();
+  }
+  res.json(notification);
 };
 
 // Define the getUserProfile controller

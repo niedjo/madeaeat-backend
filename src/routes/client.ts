@@ -8,6 +8,7 @@ import {
   getSingleRestaurantMenu,
   getUserProfile,
   makeCommand,
+  markAnnouncementAsRead,
   signin,
   signup,
   updateUserProfile,
@@ -25,6 +26,7 @@ clientRouter.get("/restaurant", getAllRestaurantProfiles);
 clientRouter.get("/restaurant/:restaurantID", getRestaurantById);
 clientRouter.get("/restaurant/:restaurantID/:menuID", getSingleRestaurantMenu);
 clientRouter.get("/announcements", getAllAnnouncements);
+clientRouter.post("/announcements/markasread/:id", markAnnouncementAsRead);
 
 // Menu routes
 clientRouter.get("/menus", getAllMenus);

@@ -163,6 +163,10 @@ const annonceSchema = new mongoose.Schema(
       ref: "Restaurant",
       required: [true, "Please precise the restaurant publishing this anounce"],
     },
+    readBy: { 
+      type: [String], 
+      default: [] 
+    }, // Liste des IDs des utilisateurs qui ont lu
   },
   {
     timestamps: true,
