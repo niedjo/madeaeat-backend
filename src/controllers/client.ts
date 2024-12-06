@@ -102,7 +102,7 @@ export const getRestaurantById = async (req: Request, res: Response) => {
   // Find the restaurant by its ID and populate the ownedBy field with only the necessary information
   const foundRestaurant = await Restaurant.findById(restaurantID)
     .select("-__v -createdAt -updatedAt")
-    .populate("ownedBy", "name email phoneNumber");
+    .populate("ownedBy", "name email phoneNumber profileImage");
 
   // Find all menu owners for the given restaurant
   const idMenuRestaurant = await MenuOwner.find({
