@@ -33,6 +33,9 @@ const clientSchema = new mongoose.Schema<IClient>(
     profileImage: {
       type: String,
     },
+    age: {
+      type: String,
+    },
     town: {
       type: String,
       trim: true,

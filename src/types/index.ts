@@ -21,6 +21,7 @@ export interface IAdminRestaurant extends IGenericUser {
 
 export interface IClient extends IGenericUser {
   town?: string;
+  age?: string;
 }
 
 export interface IAgence extends IGenericUser {
