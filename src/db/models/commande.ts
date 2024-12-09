@@ -47,6 +47,9 @@ const commandeSchema = new Schema({
   livree : {
     type : Boolean,
   }
+},
+{
+  timestamps: true,
 });
 
 const CommandeModel = mongoose.model("Commande", commandeSchema);

@@ -36,7 +36,9 @@ const panelAgenceSchema = new mongoose.Schema<IAgence>({
   profileAgence: {
     type: String,
   }
-
+},
+{
+  timestamps: true,
 });
 
 const salt = 10;

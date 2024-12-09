@@ -27,6 +27,9 @@ const agenceCentralSchema = new mongoose.Schema<IGenericUser>({
   profileImage: {
     type: String,
   },
+},
+{
+  timestamps: true,
 });
 
 const salt = 10;
