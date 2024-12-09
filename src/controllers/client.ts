@@ -284,16 +284,16 @@ export const makeCommand = async (req: Request, res: Response) => {
     throw new NotFoundError("User not found");
   }
 
-  // Extract the menuID from the request body
-  const { menuID } = req.body;
+  // // Extract the menuID from the request body
+  // const { menuID } = req.body;
 
-  // Find the menu by its ID
-  const menu = await Menu.findById(menuID);
+  // // Find the menu by its ID
+  // const menu = await Menu.findById(menuID);
 
-  // If no menu is found, throw a NotFoundError
-  if (!menu) {
-    throw new NotFoundError("Menu not found");
-  }
+  // // If no menu is found, throw a NotFoundError
+  // if (!menu) {
+  //   throw new NotFoundError("Menu not found");
+  // }
 
   // Create a new command
   const newCommand = await CommandeModel.create({
