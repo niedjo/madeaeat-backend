@@ -1,4 +1,5 @@
 import { Request } from "express";
+import { Document } from "mongoose";
 
 export interface IReq extends Request {
   user: {
@@ -32,5 +33,15 @@ export interface IAgence extends IGenericUser {
 export interface UploadedFiles {
   profileImage?: Express.Multer.File[];
   profileAgence?: Express.Multer.File[];
+}
+
+// Définir le type TypeScript pour représenter des éléments non uniformes
+export type Item = {
+  [key: string]: any; // Les éléments peuvent avoir n'importe quelle structure
+};
+
+// Définir le type TypeScript pour le document
+export interface CommandeModel extends Document {
+  items: Item[]; // Tableau d'éléments de type mixte
 }
 
