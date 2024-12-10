@@ -16,6 +16,7 @@ import {
 } from "../middlewares/upload";
 
 import jwt, { JwtPayload } from 'jsonwebtoken'
+import CommandeModel from "../db/models/commande";
 
 // Authentication controllers
 
@@ -617,5 +618,27 @@ export const updateRestaurantAdminInfos = async (
 
   return res.status(StatusCodes.OK).json({
     admin: updatedAdmin,
+  });
+};
+
+// Define the getAllUserCommands controller
+export const getAllRestaurantCommande = async (req: Request, res: Response) => {
+  // Extract the userId from the request object
+  const userId = (req as any).user.userId;
+
+  // Find the user by its ID
+  const restau = await Restaurant.findById(userId);
+
+  // If no user is found, throw a NotFoundError
+  if (!restau) {
+    throw new NotFoundError("Restaurant not found");
+  }
+
+  // Find all commands for the given user
+  const commands = await CommandeModel.find({ "items.0.restau._id" : userId });
+
+  // Send the commands back to the client
+  return res.status(StatusCodes.OK).json({
+    commands,
   });
 };

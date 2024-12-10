@@ -38,10 +38,10 @@ const commandeSchema = new Schema({
     type: String,
     requied: [true, "Please precise the phone number for payment"],
   },
-  valede_par_restaurateur : {
+  valide_par_restaurateur : {
     type : Boolean,
   },
-  valede_par_madeaeat : {
+  valide_par_madeaeat : {
     type : Boolean,
   },
   livree : {

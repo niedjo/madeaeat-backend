@@ -18,6 +18,7 @@ import {
   updateRestaurantAdminInfos,
   updateRestaurantInfos,
   signinAdmin,
+  getAllRestaurantCommande,
 } from "../controllers/restaurant";
 import { upload } from "../middlewares/upload";
 import createRestaurantMiddleware from "../middlewares/createRestaurantMiddleware";
@@ -41,6 +42,9 @@ restaurantRouter
   .patch(upload.single("imageMenu"), updateMenuItem)
   .delete(deleteMenuItem);
 restaurantRouter.route("/menus").get(getAllRestaurantMenu);
+
+// commande routes
+restaurantRouter.route("/commandes").get(getAllRestaurantCommande);
 
 // annonce routes
 restaurantRouter.route("/annonce").post(createAnnonce);
